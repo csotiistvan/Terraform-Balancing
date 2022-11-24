@@ -1,0 +1,22 @@
+#cloud-config
+
+# Above line is not a comment, it is required for cloud-config to run, it is similar to a shebang line in bash!
+
+# Run all the config commands
+runcmd:
+# Make testfile to see cloud-init started
+  - sudo touch /home/ubuntu/test.txt
+# Update apt packages
+  - sudo apt-get update
+# Install all dependencies
+  - sudo apt install -y nginx
+  - sudo echo "hello terraform NginX" >> base.html
+  - sudo cp base.html /var/www/html/index.nginx-debian.html
+  # - cd /etc/nginx/sites-enabled
+  # - sudo sed -i 's/80/42069/' default
+  - sudo systemctl restart nginx
+# Give the www-data user permissions and ownership of wordpress folders
+  # - sudo chown -R www-data:www-data /var/www/wordpress
+  # - sudo chmod -R g+w /var/www/wordpress
+# Create file to denote script run is finished
+  - sudo touch /home/ubuntu/nginx_ready.csv
