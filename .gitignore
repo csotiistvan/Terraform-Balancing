@@ -34,7 +34,7 @@ version
 
 # Keys in the tfvars
 
-*.tfvars
+#*.tfvars
 
 # Ignore override files as they are usually used to override resources
  
